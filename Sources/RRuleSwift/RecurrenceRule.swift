@@ -10,6 +10,11 @@ import Foundation
 import EventKit
 
 public struct RecurrenceRule {
+    
+    // ------------------
+    // MARK: - Properties
+    // ------------------
+    
     /// The calendar of recurrence rule.
     public var calendar = Calendar.current
 
@@ -77,19 +82,36 @@ public struct RecurrenceRule {
     /// The exclusion dates of the recurrence rule. The dates of this property will not be generated, even if some inclusive rdate matches the recurrence rule.
     public var exdate: ExclusionDate?
 
+    // ------------
+    // MARK: - Init
+    // ------------
+    
     public init(frequency: RecurrenceFrequency) {
+        
         self.frequency = frequency
+        
     }
 
     public init?(rruleString: String) {
+        
         if let recurrenceRule = RRule.ruleFromString(rruleString) {
+            
             self = recurrenceRule
+            
         } else {
+            
             return nil
+            
         }
+        
     }
 
     public func toRRuleString() -> String {
         return RRule.stringFromRule(self)
+    // ---------------
+    // MARK: - Helpers
+    // ---------------
+    
     }
+    
 }
