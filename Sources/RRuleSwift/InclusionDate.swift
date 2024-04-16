@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct InclusionDate {
+public struct InclusionDate: Hashable {
     
     // ------------------
     // MARK: - Properties

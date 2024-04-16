@@ -9,7 +9,7 @@
 import Foundation
 import EventKit
 
-public struct RecurrenceRule {
+public struct RecurrenceRule: Hashable {
     
     // ------------------
     // MARK: - Properties
@@ -106,12 +106,14 @@ public struct RecurrenceRule {
         
     }
 
-    public func toRRuleString() -> String {
-        return RRule.stringFromRule(self)
     // ---------------
     // MARK: - Helpers
     // ---------------
     
+    public var rruleString: String {
+        
+        RRule.stringFromRule(self)
+        
     }
     
 }
