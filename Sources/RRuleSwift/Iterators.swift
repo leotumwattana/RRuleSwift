@@ -142,10 +142,18 @@ public extension RecurrenceRule {
         
     }
     
+    func occurrences(
+        after date: Date,
+        limit: Int = Iterator.recurrenceLimit
+    ) -> [Date] {
+        
+        occurrences(between: date, and: Date.distantFuture, limit: limit)
+        
+    }
+    
     func after(
         date: Date,
-        inclusive: Bool = false,
-        limit: Int = Iterator.recurrenceLimit
+        inclusive: Bool = false
     ) -> Date? {
         
         guard let _ = JavaScriptBridge.rrulejs() 
@@ -153,7 +161,7 @@ public extension RecurrenceRule {
         
         let dateJSON = RRule.ISO8601DateFormatter.string(from: date)
         
-        let ruleJSONString = toJSONString(limit: limit)
+        let ruleJSONString = toJSONString()
         
         let _ = Iterator.rruleContext?.evaluateScript("var rule = new RRule({ \(ruleJSONString) })")
         
