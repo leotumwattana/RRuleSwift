@@ -142,6 +142,14 @@ public extension RecurrenceRule {
         
     }
     
+    /**
+     - Returns: The occurrences after but not including the
+                occurrence equal to the supplied date.
+     - Parameters:
+        - after: The date after which to return occurrences.
+        - limit: Limit the number of occurrences to return. Defaults to 500.
+     */
+    
     func occurrences(
         after date: Date,
         limit: Int = Iterator.recurrenceLimit
