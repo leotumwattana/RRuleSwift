@@ -142,14 +142,18 @@ public extension RecurrenceRule {
         
     }
     
-    func after(date: Date, inclusive: Bool = false) -> Date? {
+    func after(
+        date: Date,
+        inclusive: Bool = false,
+        limit: Int = Iterator.recurrenceLimit
+    ) -> Date? {
         
         guard let _ = JavaScriptBridge.rrulejs() 
         else { return nil }
         
         let dateJSON = RRule.ISO8601DateFormatter.string(from: date)
         
-        let ruleJSONString = toJSONString()
+        let ruleJSONString = toJSONString(limit: limit)
         
         let _ = Iterator.rruleContext?.evaluateScript("var rule = new RRule({ \(ruleJSONString) })")
         
