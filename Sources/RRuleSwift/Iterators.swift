@@ -32,9 +32,9 @@ public struct Iterator {
     
 }
 
-public extension RecurrenceRule {
+extension RecurrenceRule {
     
-    func allOccurrences(
+    public func allOccurrences(
         limit: Int = Iterator.recurrenceLimit
     ) -> [Date] {
         
@@ -84,7 +84,7 @@ public extension RecurrenceRule {
         
     }
 
-    func occurrences(
+    public func occurrences(
         between date: Date,
         and otherDate: Date,
         limit: Int = Iterator.recurrenceLimit
@@ -150,7 +150,7 @@ public extension RecurrenceRule {
         - limit: Limit the number of occurrences to return. Defaults to 500.
      */
     
-    func occurrences(
+    public func occurrences(
         after date: Date,
         limit: Int = Iterator.recurrenceLimit
     ) -> [Date] {
@@ -167,7 +167,7 @@ public extension RecurrenceRule {
      - limit: Limit the number of occurrences to return. Defaults to 500.
      */
     
-    func occurrences(
+    public func occurrences(
         onOrAfter date: Date,
         limit: Int = Iterator.recurrenceLimit
     ) -> [Date] {
@@ -177,11 +177,22 @@ public extension RecurrenceRule {
     }
     
     /**
+     - Returns: The first occurrence equal to or after the supplied date
+     */
+    
+    public func firstOccurrence(onOrAfter date: Date) -> Date? {
+        
+        occurrences(between: date, and: .distantFuture, limit: 1).first
+        
+    }
+    
+    /**
      - Returns: The immediate occurrence after the supplied date
                 if one exists.
      */
     
-    func after(
+    #warning("TODO: This is a little confusing. Maybe drop it?")
+    public func after(
         date: Date,
         inclusive: Bool = false
     ) -> Date? {
